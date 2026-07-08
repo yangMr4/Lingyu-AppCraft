@@ -3,7 +3,9 @@ target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-
+# 忽略整个 tmp 目录（包含所有生成的代码文件）
+/tmp/
+tmp/
 ### STS ###
 .apt_generated
 .classpath
