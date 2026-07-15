@@ -9,10 +9,7 @@ import com.lingyu.lingyuappcraft.constant.UserConstant;
 import com.lingyu.lingyuappcraft.exception.BusinessException;
 import com.lingyu.lingyuappcraft.exception.ErrorCode;
 import com.lingyu.lingyuappcraft.exception.ThrowUtils;
-import com.lingyu.lingyuappcraft.model.dto.user.UserAddRequest;
-import com.lingyu.lingyuappcraft.model.dto.user.UserQueryRequest;
-import com.lingyu.lingyuappcraft.model.dto.user.UserRegisterRequest;
-import com.lingyu.lingyuappcraft.model.dto.user.UserUpdateRequest;
+import com.lingyu.lingyuappcraft.model.dto.user.*;
 import com.lingyu.lingyuappcraft.model.vo.LoginUserVO;
 import com.lingyu.lingyuappcraft.model.vo.UserVO;
 import com.mybatisflex.core.paginate.Page;
@@ -158,7 +155,21 @@ public class UserController {
         userVOPage.setRecords(userVOList);
         return ResultUtils.success(userVOPage);
     }
-
+    /**
+     * 用户登录
+     *
+     * @param userLoginRequest 用户登录请求
+     * @param request          请求对象
+     * @return 脱敏后的用户登录信息
+     */
+    @PostMapping("/login")
+    public BaseResponse<LoginUserVO> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
+        ThrowUtils.throwIf(userLoginRequest == null, ErrorCode.PARAMS_ERROR);
+        String userAccount = userLoginRequest.getUserAccount();
+        String userPassword = userLoginRequest.getUserPassword();
+        LoginUserVO loginUserVO = userService.userLogin(userAccount, userPassword, request);
+        return ResultUtils.success(loginUserVO);
+    }
 
 }
 
