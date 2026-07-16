@@ -1,0 +1,13 @@
+package com.lingyu.lingyuappcraft.mapper;
+
+import com.mybatisflex.core.BaseMapper;
+import com.lingyu.lingyuappcraft.model.entity.ChatHistory;
+
+/**
+ * 对话历史 映射层。
+ *
+ * @author <a href="https://github.com/yangMr4">yangyunjia</a>
+ */
+public interface ChatHistoryMapper extends BaseMapper<ChatHistory> {
+
+}
